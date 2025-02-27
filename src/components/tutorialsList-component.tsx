@@ -31,35 +31,35 @@ export default class TutorialsList extends Component<Props, State>{
 
 
     retrieveTutorials() {
-        TutorialDataService.getAll()
-        .then((response: any) => {
-            this.setState({
-            tutorials: response.data.data
-            });
-            console.log(response.data.data);
-        })
-        .catch((e: Error) => {
-            console.log(e);
-        });
+        // TutorialDataService.getAll()
+        // .then((response: any) => {
+        //     this.setState({
+        //     tutorials: response.data.data
+        //     });
+        //     console.log(response.data.data);
+        // })
+        // .catch((e: Error) => {
+        //     console.log(e);
+        // });
     }
 
     removeAllTutorials() {
-        TutorialDataService.deleteAll()
-          .then((response: any) => {
-            console.log(response.data);
-            this.refreshList();
-          })
-          .catch((e: Error) => {
-            console.log(e);
-          });
+        // TutorialDataService.deleteAll()
+        //   .then((response: any) => {
+        //     console.log(response.data);
+        //     this.refreshList();
+        //   })
+        //   .catch((e: Error) => {
+        //     console.log(e);
+        //   });
       }
 
       refreshList() {
-        this.retrieveTutorials();
-        this.setState({
-          currentTutorial: null,
-          currentIndex: -1
-        });
+        // this.retrieveTutorials();
+        // this.setState({
+        //   currentTutorial: null,
+        //   currentIndex: -1
+        // });
       }
   
 

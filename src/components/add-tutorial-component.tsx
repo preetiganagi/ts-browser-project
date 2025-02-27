@@ -44,19 +44,19 @@ export default class AddTutorial extends Component<Props, State> {
     };
 
     TutorialDataService.create(data)
-      .then((response: any) => {
-        this.setState({
-          id: response.data.id,
-          title: response.data.title,
-          description: response.data.description,
-          published: response.data.published,
-          submitted: true
-        });
-        console.log(response.data);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
+      // .then((response: any) => {
+      //   this.setState({
+      //     id: response.data.id,
+      //     title: response.data.title,
+      //     description: response.data.description,
+      //     published: response.data.published,
+      //     submitted: true
+      //   });
+      //   console.log(response.data);
+      // })
+      // .catch((e: Error) => {
+      //   console.log(e);
+      // });
   }
 
   newTutorial() {
