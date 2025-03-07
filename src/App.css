@@ -40,3 +40,6 @@
 .read-the-docs {
   color: #888;
 }
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}

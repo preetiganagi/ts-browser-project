@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from "react";
-import Recipe from '../types/recipe.ts';
+import Recipe from '../types/Recipe.ts';
 import axios from "axios";
-import Comment from "../types/comments.ts";
+import Comment from "../types/Comments.ts";
 
 
 const RecipeApp: React.FC = () => {
@@ -21,17 +21,7 @@ const RecipeApp: React.FC = () => {
     const [comments, setComments] = useState<Comment[]>([]);
     const [newComment, setNewComment] = useState<string>("");
   
-    useEffect(() => {
-      if (token) {
-        axios.get(`http://127.0.0.1:8000/api/recipes?search=${searchTerm}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then((response) => {
-          setRecipes(response.data);
-        })
-        .catch(error => console.error("Error fetching recipes:", error));
-      }
-    }, [searchTerm, token]);
+  
   
     const [errors, setErrors] = useState<{ title?: string; ingredients?: string; steps?: string }>({});
 
@@ -48,12 +38,6 @@ const RecipeApp: React.FC = () => {
       };
 
     const addRecipe = async () => {
-      // if (!newRecipe.title || !newRecipe.ingredients || !newRecipe.steps){
-        // if (!newRecipe.title.trim() || !newRecipe.ingredients.trim() || !newRecipe.steps.trim()) {
-        //   alert("All fields (Title, Ingredients, and Steps) are required!");
-        //   return;
-        // }
-      // } 
 
       if (!validateFields()) {
          return;
@@ -85,31 +69,32 @@ const RecipeApp: React.FC = () => {
 
     const updateRecipe = async () => {
       if (!selectedRecipe) return;
-  
+
       try {
-        const response = await axios.put(`http://127.0.0.1:8000/api/recipes/${selectedRecipe.id}`, {
+      const response = await axios.put(`http://127.0.0.1:8000/api/recipes/${selectedRecipe.id}`, {
           title: newRecipe.title,
           ingredients: newRecipe.ingredients,
           steps: newRecipe.steps,
-        });
-  
-        setRecipes(recipes.map((r) => (r.id === selectedRecipe.id ? response.data : r)));
-        setSelectedRecipe(null);
-        setEditMode(false);
-        setErrors({}); 
+      });
+
+      setRecipes(recipes.map((r) => (r.id === selectedRecipe.id ? response.data : r)));
+      setSelectedRecipe(null);
+      setEditMode(false);
+      setErrors({}); 
       } catch (error) {
-        console.error("Error updating recipe:", error);
+      console.error("Error updating recipe:", error);
       }
-    };
-  
-    const deleteRecipe = async (id: number) => {
+  };
+
+  const deleteRecipe = async (id: number) => {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/recipes/${id}`);
-        setRecipes(recipes.filter((r) => r.id !== id));
+      await axios.delete(`http://127.0.0.1:8000/api/recipes/${id}`);
+      setRecipes(recipes.filter((r) => r.id !== id));
       } catch (error) {
-        console.error("Error deleting recipe:", error);
+      console.error("Error deleting recipe:", error);
       }
-    };
+  };
+    
 
     const rateRecipe = async (id: number, newRating: number) => {
       try {
@@ -261,7 +246,7 @@ const RecipeApp: React.FC = () => {
                   </ul>
 
                   {/* Add New Comment */}
-                  <div className="mt-2">
+                  <div className="mt-2">  
                     <input
                       type="text"
                       className="border p-2 w-full"

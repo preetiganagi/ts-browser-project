@@ -51,6 +51,7 @@ export const logout = async () => {
       }
     );
     removeToken();
+    window.location.href = "/"
   } catch (error) {
     console.error("Logout failed:", error);
     throw error;
@@ -74,3 +75,4 @@ export const getCurrentUser = async () => {
 export const isAuthenticated = () => {
   return !!getToken();
 };
+

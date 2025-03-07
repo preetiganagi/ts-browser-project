@@ -1,8 +1,12 @@
+import { AxiosResponse } from "axios";
 import http from "../http-common";
 import ITutorialData from "../types/tutorial-type"
 
+
+
 class TutorialDataService {
-    getAll(){
+    getAll(): Promise<AxiosResponse<ITutorialData[], any>>
+    {
         return http.get<Array<ITutorialData>>("/tutorials");
     }
     create(data: ITutorialData) {
@@ -12,7 +16,7 @@ class TutorialDataService {
         return http.get<ITutorialData>(`/tutorials/${id}`);
     }
     deleteAll() {
-        return http.delete<any>(`/tutorials`);
+        return http.delete<boolean>(`/tutorials`);
       }
   
 }
